@@ -15,6 +15,12 @@ __author__ = 'ipetrash'
 
 from PIL import Image
 import hashlib
+import os
+import random
+
+
+BLACK_PXL = 0
+WHITE_PXL = 255
 
 
 def clear_captcha(im):
@@ -23,16 +29,15 @@ def clear_captcha(im):
     # то очищение капчи будет таким простым
 
     w, h = im.size
-    black_pxl = 0
-    white_pxl = 255
+
 
     for x in range(w):
         for y in range(h):
             pxl = im.getpixel((x, y))
 
             # Все пиксели, отличающиеся от черного, закрашивают белым
-            if pxl != black_pxl:
-                im.putpixel((x, y), white_pxl)
+            if pxl != BLACK_PXL:
+                im.putpixel((x, y), WHITE_PXL)
 
 
 def get_margins(im):
@@ -40,13 +45,12 @@ def get_margins(im):
 
     w, h = im.size
     left, right, top, bottom = w, -1, h, -1
-    black_pxl = 0
 
     for y in range(h):
         for x in range(w):
             pxl = im.getpixel((x, y))
 
-            if pxl == black_pxl:
+            if pxl == BLACK_PXL:
                 if left > x:
                     left = x
 
@@ -75,7 +79,6 @@ def border_letters(im):
 
     # Разделить на части
     w, h = im.size
-    black_pxl = 0
 
     # Бывает, просвет между буквами больше одного пикселя
     # и чтобы у нас не набрались несколько координат просветов
@@ -96,8 +99,7 @@ def border_letters(im):
 
             # Если наткнулись на черный пиксель, значит
             # тут не просвета, выходим из цикла
-            if pxl == black_pxl:
-                multi_line
+            if pxl == BLACK_PXL:
                 line = False
                 multi_line = False
                 break
@@ -151,7 +153,6 @@ def get_letters_from_captcha(im):
 def get_hash_mask_letter(letter_im):
     """Функция возвращает хеш маски изображения буквы."""
 
-    black_pxl = 0
     str_bitarr = []
     w, h = letter_im.size
 
@@ -160,7 +161,7 @@ def get_hash_mask_letter(letter_im):
             pxl = letter_im.getpixel((x, y))
 
             # Если пиксель черный добавим в список '1', иначе '0'
-            str_bitarr.append('1' if pxl == black_pxl else '0')
+            str_bitarr.append('1' if pxl == BLACK_PXL else '0')
 
     # Получим маску
     mask = ''.join(str_bitarr)
@@ -206,13 +207,10 @@ HASH_MASK_LETTER_DICT = {
 }
 
 
-import os
-import random
-
 if __name__ == '__main__':
     DIR = 'test_captcha'
 
-    # Случайный файл капчи из папки test
+    # Случайный файл капчи из папки test_captcha
     random_captcha = random.choice(os.listdir(DIR))
 
     file_name = DIR + '/' + random_captcha
