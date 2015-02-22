@@ -214,12 +214,9 @@ if __name__ == '__main__':
 
     file_name = DIR + '/' + random_captcha
 
-    # Открытие изображения
-    im = Image.open(file_name)
+    # Открытие изображения и конвертирование его в монохромное
+    im = Image.open(file_name).convert('L')
     # im.show()
-
-    # Конвертирование в монохромный режим
-    im = im.convert('L')
 
     # Очищение капчи
     clear_captcha(im)
