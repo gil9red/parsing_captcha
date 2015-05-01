@@ -207,7 +207,11 @@ HASH_MASK_LETTER_DICT = {
 
 
 if __name__ == '__main__':
-    DIR = 'test_captcha'
+    import os
+    cur_dir = os.path.dirname(__file__)
+
+    DIR = os.path.join(cur_dir, 'test_captcha')
+    # DIR = 'test_captcha'
 
     # Случайный файл капчи из папки test_captcha
     random_captcha = random.choice(os.listdir(DIR))
