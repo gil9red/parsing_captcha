@@ -1,8 +1,7 @@
 # parsing_captcha
 Пример разбора простой капчи (#python #python3 #captcha #PIL #image_processing)
 
-#### Пример работы парсера: 
-
+#### Пример работы парсера:
 Файл         | Капча | Результат парсинга
 ------------ | ------------ | ------------
 [test_captcha/1.png](test_captcha/1.png) | ![test_captcha/1.png](test_captcha/1.png) | NEPYBI
