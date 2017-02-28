@@ -209,36 +209,39 @@ HASH_MASK_LETTER_DICT = {
 if __name__ == '__main__':
     DIR = 'test_captcha'
 
-    # Случайный файл капчи из папки test_captcha
-    random_captcha = random.choice(os.listdir(DIR))
+    # # Случайный файл капчи из папки test_captcha
+    # file_name = random.choice(os.listdir(DIR))
 
-    file_name = DIR + '/' + random_captcha
+    # First 10 captcha
+    for i in range(1, 10 + 1):
+        file_name = os.path.join(DIR, '{}.png'.format(i))
 
-    # Открытие изображения и конвертирование его в монохромное
-    im = Image.open(file_name).convert('L')
-    # im.show()
+        # Открытие изображения и конвертирование его в монохромное
+        im = Image.open(file_name).convert('L')
+        # im.show()
 
-    # Очищение капчи
-    clear_captcha(im)
+        # Очищение капчи
+        clear_captcha(im)
 
-    # Обрезание текста капчи
-    im = crop_captcha_text(im)
+        # Обрезание текста капчи
+        im = crop_captcha_text(im)
 
-    # Список букв капчи
-    letters_captcha = get_letters_from_captcha(im)
+        # Список букв капчи
+        letters_captcha = get_letters_from_captcha(im)
 
-    # Итоговый текст капчи
-    captcha_text = ''
+        # Итоговый текст капчи
+        captcha_text = ''
 
-    # Перебор изображений букв капч
-    for letter in letters_captcha:
-        # Получаем маску буквы капчи
-        hash_mask = get_hash_mask_letter(letter)
+        # Перебор изображений букв капч
+        for letter in letters_captcha:
+            # Получаем маску буквы капчи
+            hash_mask = get_hash_mask_letter(letter)
 
-        # Если маска есть в словаре
-        if hash_mask in HASH_MASK_LETTER_DICT:
-            captcha_text += HASH_MASK_LETTER_DICT[hash_mask]
-        else:
-            captcha_text += "-"
+            # Если маска есть в словаре
+            if hash_mask in HASH_MASK_LETTER_DICT:
+                captcha_text += HASH_MASK_LETTER_DICT[hash_mask]
+            else:
+                captcha_text += "-"
 
-    print('{}: "{}"'.format(file_name, captcha_text))
+        # print('{}: "{}"'.format(file_name, captcha_text))
+        print('[{0}]({0}) | ![{0}]({0}) | {1}'.format(file_name.replace('\\', '/'), captcha_text))
