@@ -243,5 +243,7 @@ if __name__ == '__main__':
             else:
                 captcha_text += "-"
 
-        # print('{}: "{}"'.format(file_name, captcha_text))
-        print('[{0}]({0}) | ![{0}]({0}) | {1}'.format(file_name.replace('\\', '/'), captcha_text))
+        print('{}: "{}"'.format(file_name, captcha_text))
+
+        # NOTE: For markdown:
+        # print('[{0}]({0}) | ![{0}]({0}) | {1}'.format(file_name.replace('\\', '/'), captcha_text))
