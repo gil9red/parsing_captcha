@@ -14,3 +14,10 @@
 [test_captcha/8.png](test_captcha/8.png) | ![test_captcha/8.png](test_captcha/8.png) | STGIZX
 [test_captcha/9.png](test_captcha/9.png) | ![test_captcha/9.png](test_captcha/9.png) | OUS-
 [test_captcha/10.png](test_captcha/10.png) | ![test_captcha/10.png](test_captcha/10.png) | -LH-
+
+#### Мои репозитории с парсерами капчи:
+* https://github.com/gil9red/parser-phone-image
+* https://github.com/gil9red/parsing_captcha
+* https://github.com/gil9red/parsing_captcha-2
+* https://github.com/gil9red/parsing-captcha-3
+* https://github.com/gil9red/hideme.ru-proxy-list
